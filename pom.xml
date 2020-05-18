@@ -47,10 +47,10 @@
 		<profile>
 			<id>dev-justine</id>
 			<properties>
-				<db.port>???</db.port>
-				<db.name>???</db.name>
-				<db.username>???</db.username>
-				<db.password>???</db.password>
+				<db.port>3306</db.port>
+				<db.url>atos?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</db.url>
+				<db.username>root</db.username>
+				<db.password> </db.password>
 			</properties>
 		</profile>
 
