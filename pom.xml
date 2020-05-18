@@ -35,14 +35,14 @@
 		</profile>
 
 		<profile>
-			<id>dev-julien</id>
-			<properties>
-				<db.port>???</db.port>
-				<db.url>???</db.url>
-				<db.username>???</db.username>
-				<db.password>???</db.password>
-			</properties>
-		</profile>
+            <id>dev-julien</id>
+            <properties>
+                <db.port>3306</db.port>
+                <db.url>atostest?serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>root</db.password>
+            </properties>
+        </profile>
 
 		<profile>
 			<id>dev-justine</id>
