@@ -17,7 +17,7 @@ public class SiteClient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nom;
+    private String nomVille;
     private String adresse;
 
     private boolean estActif;
