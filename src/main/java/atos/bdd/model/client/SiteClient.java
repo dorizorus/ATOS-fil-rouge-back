@@ -1,5 +1,8 @@
 package atos.bdd.model.client;
 
+import atos.bdd.view.MyJsonView;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,11 +18,16 @@ public class SiteClient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(MyJsonView.SiteClient.class)
     private int id;
 
-    private String nom;
+    @JsonView(MyJsonView.SiteClient.class)
+    private String nomVille;
+
+    @JsonView(MyJsonView.SiteClient.class)
     private String adresse;
 
+    @JsonView(MyJsonView.SiteClient.class)
     private boolean estActif;
 
     @ManyToOne
@@ -27,5 +35,6 @@ public class SiteClient {
     private Client client;
 
     @OneToMany(mappedBy = "siteClient")
+    @JsonIgnore
     private Set<ContactClient> contactsClient;
 }
