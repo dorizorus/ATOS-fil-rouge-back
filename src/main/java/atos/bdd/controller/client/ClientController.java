@@ -37,7 +37,7 @@ public class ClientController {
     @PutMapping("/addclient")
     public String saveClient(@RequestBody Client client) {
         iClientDao.save(client);
-        return "client saved with id= "+client.getId();
+        return "client ajouté avec id= "+client.getId();
     }
 
 

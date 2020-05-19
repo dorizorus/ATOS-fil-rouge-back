@@ -39,6 +39,6 @@ public class SiteClientController {
     @PutMapping("/addsiteclient")
     public String saveSiteClient(@RequestBody SiteClient siteClient) {
         iSiteClientDao.save(siteClient);
-        return "client saved with id= " + siteClient.getId();
+        return "site client ajouté avec id= " + siteClient.getId();
     }
 }
