@@ -1,8 +1,8 @@
 package atos.bdd.model.client;
 
 
-import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,10 +19,16 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.Client.class)
+    @JsonView({
+            MyJsonView.Client.class,
+            MyJsonView.Besoin.class
+    })
     private int id;
 
-    @JsonView(MyJsonView.Client.class)
+    @JsonView({
+            MyJsonView.Client.class,
+            MyJsonView.Besoin.class
+    })
     private String nom;
 
     @JsonIgnore

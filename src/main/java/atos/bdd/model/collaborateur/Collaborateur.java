@@ -3,6 +3,8 @@ package atos.bdd.model.collaborateur;
 import atos.bdd.model.agence.Agence;
 import atos.bdd.model.competence.Competence;
 import atos.bdd.model.besoin.Proposition;
+import atos.bdd.view.MyJsonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,15 +20,30 @@ public class Collaborateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView({
+            MyJsonView.Besoin.class,
+    MyJsonView.Proposition.class
+    })
     private long id;
 
     private int bench;
 
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String nom;
+
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String prenom;
+
+    @JsonView(MyJsonView.Proposition.class)
     private String cvUrl;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "collaborateurs_competences",
             joinColumns = @JoinColumn(name = "id_collaborateur"),

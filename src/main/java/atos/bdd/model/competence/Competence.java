@@ -2,6 +2,8 @@ package atos.bdd.model.competence;
 
 import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.besoin.Besoin;
+import atos.bdd.view.MyJsonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,9 +19,13 @@ public class Competence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(MyJsonView.Besoin.class)
     private int id;
 
+    @JsonView(MyJsonView.Besoin.class)
     private String type;
+
+    @JsonView(MyJsonView.Besoin.class)
     private String libelle;
 
     @ManyToMany(mappedBy = "competences")

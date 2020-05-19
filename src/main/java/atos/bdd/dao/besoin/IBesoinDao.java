@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -18,5 +19,11 @@ public interface IBesoinDao extends JpaRepository<Besoin, Integer> {
     List<Besoin> findAllByEstOuvertTrueOrderByDateEcheanceAsc();
 
     //choppe tous les besoins fermés, les tri par date d'échance (la plus proche en premier)
-    List<Besoin> findAllByEstOuvertFalseOrderByDateEcheanceAsc();
+    List<Besoin> findAllByEstOuvertFalseOrderByDateEcheanceDesc();
+
+    //choppe les besoin ouverts et affiche ceux dont le nom du client contient ce qu'entre l'utilisateur
+    List<Besoin> findAllByEstOuvertTrueAndClientNomLike(String search);
+
+    Besoin findById(long id);
+
 }

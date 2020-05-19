@@ -3,6 +3,8 @@ package atos.bdd.model.agence;
 import atos.bdd.model.besoin.Besoin;
 import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.soustraitant.ContactSoustraitant;
+import atos.bdd.view.MyJsonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,8 +20,10 @@ public class Agence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(MyJsonView.Besoin.class)
     private long id;
 
+    @JsonView(MyJsonView.Besoin.class)
     private String nom;
 
     @OneToMany(mappedBy = "agence")
