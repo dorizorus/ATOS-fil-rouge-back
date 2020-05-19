@@ -41,4 +41,28 @@ public class SiteClientController {
         iSiteClientDao.save(siteClient);
         return "site client ajouté avec id= " + siteClient.getId();
     }
+
+    //modification d'un site client
+    @PutMapping("/updatesiteclient")
+    public String updateSiteClient(@RequestBody SiteClient siteClient){
+        if (siteClient!=null){
+            iSiteClientDao.save(siteClient);
+            return "Site client modifié";
+        }else{
+            return "Site client non trouvé";
+        }
+    }
+
+    //suppression d'un site client
+    @DeleteMapping("/deletesiteclient")
+    public String deleteSiteClient(@RequestBody SiteClient siteClient){
+        if (siteClient!=null){
+            iSiteClientDao.delete(siteClient);
+            return "Site client supprimé";
+        }else{
+            return "Site client non trouvé";
+        }
+    }
+
+
 }

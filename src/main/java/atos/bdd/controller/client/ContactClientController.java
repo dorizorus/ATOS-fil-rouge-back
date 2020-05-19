@@ -36,9 +36,31 @@ public class ContactClientController {
 
     //ajouter un nouveau contact client
     @PutMapping("/addcontactclient")
-    public String saveSiteClient(@RequestBody ContactClient contactClient) {
+    public String saveContactClient(@RequestBody ContactClient contactClient) {
         iContactClientDao.save(contactClient);
         return "contact client ajouté avec id= " + contactClient.getId();
+    }
+
+    //modification d'un contact client
+    @PutMapping("/updatecontactclient")
+    public String updateContactClient(@RequestBody ContactClient contactClient){
+        if (contactClient!=null){
+            iContactClientDao.save(contactClient);
+            return "Contact client modifié";
+        }else{
+            return "Contact client non trouvé";
+        }
+    }
+
+    //suppression d'un contact client
+    @DeleteMapping("/deletecontactclient")
+    public String deleteContactClient(@RequestBody ContactClient contactClient){
+        if (contactClient!=null){
+            iContactClientDao.delete(contactClient);
+            return "Contact Client supprimé";
+        }else{
+            return "Contact Client non trouvé";
+        }
     }
 
 
