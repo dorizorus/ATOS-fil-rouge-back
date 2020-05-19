@@ -46,7 +46,7 @@ public class Proposition {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "proposition")
