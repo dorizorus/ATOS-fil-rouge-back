@@ -1,9 +1,12 @@
 package atos.bdd.model.relation;
 
 import atos.bdd.model.relation.enums.Experience;
+import atos.bdd.view.MyJsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +27,6 @@ public class Collaborateurs_Competences implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Experience experience;
-
+    
     private int anneesExperience;
 }
