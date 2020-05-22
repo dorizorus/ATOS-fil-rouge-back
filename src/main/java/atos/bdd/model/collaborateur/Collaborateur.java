@@ -2,6 +2,8 @@ package atos.bdd.model.collaborateur;
 
 import atos.bdd.model.agence.Agence;
 import atos.bdd.model.competence.Competence;
+import atos.bdd.model.relation.Cle_collab_competence;
+import atos.bdd.model.relation.Collaborateurs_Competences;
 import atos.bdd.view.MyJsonView;
 import atos.bdd.model.besoin.Proposition;
 import lombok.Getter;
@@ -58,6 +60,11 @@ public class Collaborateur {
     @JsonView(MyJsonView.Collaborateur.class) // Fait apparaitre l'agence lors d'un appel de la vue collaborateur
     @JoinColumn(name = "id_agence")
     private Agence agence;
+   
+    
+    @OneToMany(mappedBy = "collaborateur") // Relation entre la table collaborateur et la table de jointure où est stocké l'experience
+    @JsonView(MyJsonView.Collaborateur.class) // Un collaborateur a plusieurs experience (qui est définit par la compétence), possible avec la clé composite.
+    private Set<Collaborateurs_Competences> experience;
 
 
 }
