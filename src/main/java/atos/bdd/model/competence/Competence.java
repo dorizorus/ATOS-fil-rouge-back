@@ -31,15 +31,12 @@ public class Competence {
     @JsonView({MyJsonView.Competence.class, MyJsonView.Collaborateur.class})
     private String libelle;
     
-    @ManyToMany(mappedBy = "competences")
-    Set<Collaborateur> collaborateurs;
 
 
     @ManyToMany(mappedBy = "competences")
     Set<Besoin> besoins;
     
     @OneToMany(mappedBy = "competence") // Relation entre la table collaborateur et la table de jointure où est stocké l'experience
-    @JsonView(MyJsonView.Collaborateur.class) // Une compétence a plusieurs experiences (qui est définit par la compétence), possible avec la clé composite.
-    private Set<Collaborateurs_Competences> experience; // Je suis censé mettre un s a experience mais bon, ça marche sans aussi a priori.
+    private Set<Collaborateurs_Competences> experiences; // On peut le renommer compétences si on veut aussi. Cela liste les experiences par compétence
 
 }

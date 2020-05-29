@@ -2,12 +2,16 @@ package atos.bdd.controller.collaborateur;
 
 import atos.bdd.dao.collaborateur.ICollaborateurDao;
 import atos.bdd.model.collaborateur.Collaborateur;
+import atos.bdd.model.competence.Competence;
 import atos.bdd.view.MyJsonView;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -22,6 +26,36 @@ public class CollaborateurController {
     public CollaborateurController(ICollaborateurDao iCollaborateurDao) {
         this.iCollaborateurDao = iCollaborateurDao;
     }
+
+    @JsonView(MyJsonView.Collaborateur.class)
+    @GetMapping("/collaborateur/{id}")
+    public Collaborateur getCollaborateur(@PathVariable long id)
+    {
+    	return iCollaborateurDao.findById(id);
+    }
+    
+    @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
+    public boolean ajouterCollaborateur(Collaborateur collaborateur)
+    {
+    	iCollaborateurDao.saveAndFlush(collaborateur);
+    	return true;
+    }
+    
+    @GetMapping("/collaborateur/supprimercollaborateur")
+    public boolean supprimerCollaborteur(Collaborateur collaborateur)
+    {
+    	iCollaborateurDao.delete(collaborateur);
+    	return true;
+    }
+    
+    @PostMapping("/collaborateur/modifiercollaborateur")
+    public boolean modifierCollaborateur(Collaborateur collaborateur) 
+    {
+    	iCollaborateurDao.save(collaborateur);
+    	return true;
+    }
+    
+    
     
     @JsonView(MyJsonView.Collaborateur.class)
     @GetMapping("/collaborateur/listepartitrecroissant")

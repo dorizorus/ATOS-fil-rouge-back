@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ICollaborateurDao extends JpaRepository<Collaborateur, Integer> {
 	
+	Collaborateur findById(long id);
+	
 	List<Collaborateur> findAllByOrderByTitreAsc();
 	List<Collaborateur> findAllByOrderByTitreDesc();
 	

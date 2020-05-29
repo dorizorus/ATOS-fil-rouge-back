@@ -44,19 +44,10 @@ public class Collaborateur {
     @JsonView(MyJsonView.Collaborateur.class)
     private String cvUrl;
 
-    @ManyToMany(cascade = CascadeType.PERSIST) // La cascade ici permet d'avoir accés à la table compétences afin d'attribuer des compétences au collab
-    @JsonView(MyJsonView.Collaborateur.class) // Fait apparaitre les compétences lié au collaborateur
-    @JoinTable(
-            name = "collaborateurs_competences",
-            joinColumns = @JoinColumn(name = "id_collaborateur"),
-            inverseJoinColumns = @JoinColumn(name = "id_competence")
-    )
-    private Set<Competence> competences;
-
     @OneToMany(mappedBy = "collaborateur")
     private Set<Proposition> propositions;
 
-    @ManyToOne(cascade = CascadeType.PERSIST) // Pareil qu'au dessus, on pourra attribuer une agence directement comme cela.
+    @ManyToOne(cascade = CascadeType.PERSIST) 
     @JsonView(MyJsonView.Collaborateur.class) // Fait apparaitre l'agence lors d'un appel de la vue collaborateur
     @JoinColumn(name = "id_agence")
     private Agence agence;
@@ -64,7 +55,7 @@ public class Collaborateur {
     
     @OneToMany(mappedBy = "collaborateur") // Relation entre la table collaborateur et la table de jointure où est stocké l'experience
     @JsonView(MyJsonView.Collaborateur.class) // Un collaborateur a plusieurs experience (qui est définit par la compétence), possible avec la clé composite.
-    private Set<Collaborateurs_Competences> experience;
+    private Set<Collaborateurs_Competences> experiences;
 
 
 }
