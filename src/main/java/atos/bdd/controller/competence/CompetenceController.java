@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -42,21 +43,22 @@ public class CompetenceController {
     }
     
     @PutMapping("/competence/ajoutercompetence") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
-    public boolean ajouterCompetence(Competence competence)
+    public boolean ajouterCompetence(@RequestBody Competence competence)
     {
-    	iCompetenceDao.saveAndFlush(competence);
+    	iCompetenceDao.save(competence);
+    	System.out.println("La compétence avec l'id " + competence.getId() + ", au libelle " + competence.getLibelle() + " et au type " + competence.getType() + " a été ajouté");
     	return true;
     }
     
-    @GetMapping("/competence/supprimercompetence")
-    public boolean supprimerCompetence(Competence competence)
+    @GetMapping("/competence/supprimercompetence") // Supprimer des compétences, booléen mais ne vérifie rien
+    public boolean supprimerCompetence(@RequestBody Competence competence)
     {
     	iCompetenceDao.delete(competence);
     	return true;
     }
     
-    @PostMapping("/competence/modifiercompetence")
-    public boolean modifierCompetence(Competence competence) 
+    @PostMapping("/competence/modifiercompetence") // Modifier une compétence, pareil qu'au dessus
+    public boolean modifierCompetence(@RequestBody Competence competence) 
     {
     	iCompetenceDao.save(competence);
     	return true;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -28,28 +29,28 @@ public class CollaborateurController {
     }
 
     @JsonView(MyJsonView.Collaborateur.class)
-    @GetMapping("/collaborateur/{id}")
+    @GetMapping("/collaborateur/{id}") // Renvoie un collaborateur
     public Collaborateur getCollaborateur(@PathVariable long id)
     {
     	return iCollaborateurDao.findById(id);
     }
     
     @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
-    public boolean ajouterCollaborateur(Collaborateur collaborateur)
+    public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
     	iCollaborateurDao.saveAndFlush(collaborateur);
     	return true;
     }
     
     @GetMapping("/collaborateur/supprimercollaborateur")
-    public boolean supprimerCollaborteur(Collaborateur collaborateur)
+    public boolean supprimerCollaborteur(@RequestBody Collaborateur collaborateur) // Supprimer collaborateur. Ne vérifie pas s'il est la ou non.
     {
     	iCollaborateurDao.delete(collaborateur);
     	return true;
     }
     
-    @PostMapping("/collaborateur/modifiercollaborateur")
-    public boolean modifierCollaborateur(Collaborateur collaborateur) 
+    @PostMapping("/collaborateur/modifiercollaborateur") // Modifier collaborateur sans vraiment check d'autres trucs
+    public boolean modifierCollaborateur(@RequestBody Collaborateur collaborateur) 
     {
     	iCollaborateurDao.save(collaborateur);
     	return true;
