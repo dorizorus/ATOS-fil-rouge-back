@@ -18,13 +18,25 @@ public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.Utilisateur.class)
+    @JsonView({
+            MyJsonView.Utilisateur.class,
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private long id;
 
-    @JsonView(MyJsonView.Utilisateur.class)
+    @JsonView({
+            MyJsonView.Utilisateur.class,
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String nom;
 
-    @JsonView(MyJsonView.Utilisateur.class)
+    @JsonView({
+            MyJsonView.Utilisateur.class,
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String prenom;
 
     @JsonView(MyJsonView.Utilisateur.class)

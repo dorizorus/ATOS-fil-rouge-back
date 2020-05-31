@@ -1,11 +1,10 @@
 package atos.bdd.model.collaborateur;
 
 import atos.bdd.model.agence.Agence;
-import atos.bdd.model.competence.Competence;
-import atos.bdd.model.relation.Cle_collab_competence;
+import atos.bdd.model.besoin.Proposition;
+import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.relation.Collaborateurs_Competences;
 import atos.bdd.view.MyJsonView;
-import atos.bdd.model.besoin.Proposition;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,29 +20,31 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Collaborateur {
 
+
+    
     @Id
-    @JsonView(MyJsonView.Collaborateur.class)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView({MyJsonView.Collaborateur.class, MyJsonView.Besoin.class, MyJsonView.Proposition.class})
     private long id;
     
     @JsonView(MyJsonView.Collaborateur.class)
     private int bench;
     
     @JsonView(MyJsonView.Collaborateur.class)
-    private String nom;
-    
-    @JsonView(MyJsonView.Collaborateur.class)
-    private String prenom;
-    
-    @JsonView(MyJsonView.Collaborateur.class)
     private String titre; // a ajouter dans l'uml
     
     @JsonView(MyJsonView.Collaborateur.class)
     private String identifiant; // a ajouter dans l'uml
-    
-    @JsonView(MyJsonView.Collaborateur.class)
-    private String cvUrl;
 
+    @JsonView({MyJsonView.Collaborateur.class, MyJsonView.Besoin.class, MyJsonView.Proposition.class})
+    private String nom;
+
+    @JsonView({MyJsonView.Collaborateur.class, MyJsonView.Besoin.class, MyJsonView.Proposition.class})
+    private String prenom;
+
+    @JsonView({MyJsonView.Proposition.class, MyJsonView.Collaborateur.class})
+    private String cvUrl;
+    
     @OneToMany(mappedBy = "collaborateur")
     private Set<Proposition> propositions;
 

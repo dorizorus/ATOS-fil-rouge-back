@@ -1,5 +1,7 @@
 package atos.bdd.model.besoin;
 
+import atos.bdd.view.MyJsonView;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,11 +17,23 @@ public class Commentaire {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private long id;
 
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String commentaire;
 
     @Temporal(TemporalType.DATE)
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private Date dateEmission;
 
     @ManyToOne

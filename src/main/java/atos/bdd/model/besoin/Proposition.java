@@ -20,36 +20,74 @@ public class Proposition {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.Utilisateur.class)
+    @JsonView({
+            MyJsonView.Utilisateur.class,
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private long id;
 
     @Temporal(TemporalType.DATE)
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Date dateProposition;
 
     @Temporal(TemporalType.DATE)
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Date dateRelance;
 
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private long prixAchat;
+
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private long prixVente;
 
     @ManyToOne
     @JoinColumn(name = "id_besoin")
+    @JsonView(MyJsonView.Proposition.class)
     private Besoin besoin;
 
     @ManyToOne
     @JoinColumn(name = "id_collaborateur")
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Collaborateur collaborateur;
 
     @ManyToOne
     @JoinColumn(name = "id_statut")
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Statut statut;
 
 
     @ManyToOne
-    @JoinColumn(name = "id_user")
+    @JoinColumn(name = "id_utilisateur")
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "proposition")
+    @JsonView({
+            MyJsonView.Proposition.class,
+            MyJsonView.Besoin.class
+    })
     private Set<Commentaire> commentaires;
 
 }

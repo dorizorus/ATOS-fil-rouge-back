@@ -18,13 +18,20 @@ public class SiteClient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.SiteClient.class)
+    @JsonView({
+            MyJsonView.Client.class,
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private int id;
 
-    @JsonView(MyJsonView.SiteClient.class)
+    @JsonView({
+            MyJsonView.Client.class,
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private String nomVille;
 
-    @JsonView(MyJsonView.SiteClient.class)
     private String adresse;
 
     @JsonView(MyJsonView.SiteClient.class)

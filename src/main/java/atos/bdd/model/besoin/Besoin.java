@@ -24,7 +24,10 @@ public class Besoin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.Besoin.class)
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private long id;
 
     @Temporal(TemporalType.DATE)
@@ -35,7 +38,10 @@ public class Besoin {
     @JsonView(MyJsonView.Besoin.class)
     private Date dateEcheance;
 
-    @JsonView(MyJsonView.Besoin.class)
+    @JsonView({
+            MyJsonView.Besoin.class,
+            MyJsonView.Proposition.class
+    })
     private boolean estOuvert;
 
     @JsonView(MyJsonView.Besoin.class)
@@ -44,7 +50,7 @@ public class Besoin {
     @JsonView(MyJsonView.Besoin.class)
     private boolean estRecurrent;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "besoins_competences",
             joinColumns = @JoinColumn(name = "id_besoin"),
@@ -63,7 +69,7 @@ public class Besoin {
     @JsonView(MyJsonView.Besoin.class)
     private SiteClient siteClient;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_contact")
     @JsonView(MyJsonView.Besoin.class)
     private ContactClient contactClient;
