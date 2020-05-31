@@ -38,7 +38,7 @@ public class CollaborateurController {
     @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
     public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
-    	iCollaborateurDao.saveAndFlush(collaborateur);
+    	iCollaborateurDao.save(collaborateur);
     	return true;
     }
     
@@ -49,11 +49,14 @@ public class CollaborateurController {
     	return true;
     }
     
-    @PostMapping("/collaborateur/modifiercollaborateur") // Modifier collaborateur sans vraiment check d'autres trucs
-    public boolean modifierCollaborateur(@RequestBody Collaborateur collaborateur) 
+    @PostMapping("/collaborateur/modifiercollaborateur/{id}") // Modifier collaborateur sans vraiment check d'autres trucs
+    public boolean modifierCollaborateur(@PathVariable long id, @RequestBody Collaborateur collaborateur) 
     {
-    	iCollaborateurDao.save(collaborateur);
-    	return true;
+    	if (iCollaborateurDao.findById(id) != null) {
+    		iCollaborateurDao.save(collaborateur);
+    		return true;
+    	} else
+    		return false;
     }
     
     

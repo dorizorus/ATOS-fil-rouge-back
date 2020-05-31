@@ -46,7 +46,7 @@ public class CompetenceController {
     public boolean ajouterCompetence(@RequestBody Competence competence)
     {
     	iCompetenceDao.save(competence);
-    	System.out.println("La compétence avec l'id " + competence.getId() + ", au libelle " + competence.getLibelle() + " et au type " + competence.getType() + " a été ajouté");
+    	// System.out.println("La compétence avec l'id " + competence.getId() + ", au libelle " + competence.getLibelle() + " et au type " + competence.getType() + " a été ajouté");
     	return true;
     }
     
@@ -57,11 +57,14 @@ public class CompetenceController {
     	return true;
     }
     
-    @PostMapping("/competence/modifiercompetence") // Modifier une compétence, pareil qu'au dessus
-    public boolean modifierCompetence(@RequestBody Competence competence) 
+    @PostMapping("/competence/modifiercompetence/{id}") // Modifier une compétence, pareil qu'au dessus
+    public boolean modifierCompetence(@PathVariable int id, @RequestBody Competence competence) 
     {
-    	iCompetenceDao.save(competence);
-    	return true;
+    	if (iCompetenceDao.findById(id) != null) {
+    		iCompetenceDao.save(competence);
+    		return true;
+    	} else
+    		return false;
     }
     
     
