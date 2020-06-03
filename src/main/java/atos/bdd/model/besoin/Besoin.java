@@ -5,6 +5,7 @@ import atos.bdd.model.client.Client;
 import atos.bdd.model.client.ContactClient;
 import atos.bdd.model.client.SiteClient;
 import atos.bdd.model.competence.Competence;
+import atos.bdd.model.relation.Besoins_Competences;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
@@ -50,14 +51,9 @@ public class Besoin {
     @JsonView(MyJsonView.Besoin.class)
     private boolean estRecurrent;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "besoins_competences",
-            joinColumns = @JoinColumn(name = "id_besoin"),
-            inverseJoinColumns = @JoinColumn(name = "id_competence")
-    )
+    @OneToMany(mappedBy = "besoin", cascade = CascadeType.MERGE)
     @JsonView(MyJsonView.Besoin.class)
-    private Set<Competence> competences;
+    private Set<Besoins_Competences> competences;
 
     @ManyToOne
     @JoinColumn(name = "id_client")
