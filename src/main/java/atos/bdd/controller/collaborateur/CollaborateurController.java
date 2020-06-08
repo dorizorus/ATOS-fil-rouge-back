@@ -1,8 +1,11 @@
 package atos.bdd.controller.collaborateur;
 
 import atos.bdd.dao.collaborateur.ICollaborateurDao;
+import atos.bdd.dao.competence.ICompetenceDao;
+import atos.bdd.dao.relation.ICollaborateur_CompetencesDao;
 import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.competence.Competence;
+import atos.bdd.model.relation.Collaborateurs_Competences;
 import atos.bdd.view.MyJsonView;
 
 import java.util.List;
@@ -22,10 +25,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class CollaborateurController {
 
     ICollaborateurDao iCollaborateurDao;
+    ICollaborateur_CompetencesDao iCollaborateur_competenceDao;
 
     @Autowired
-    public CollaborateurController(ICollaborateurDao iCollaborateurDao) {
+    public CollaborateurController(ICollaborateurDao iCollaborateurDao, ICollaborateur_CompetencesDao iCollaborateur_competenceDao) {
         this.iCollaborateurDao = iCollaborateurDao;
+        this.iCollaborateur_competenceDao = iCollaborateur_competenceDao;
     }
 
     @JsonView(MyJsonView.Collaborateur.class)
@@ -38,7 +43,12 @@ public class CollaborateurController {
     @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
     public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
-    	iCollaborateurDao.save(collaborateur);
+    	iCollaborateurDao.saveAndFlush(collaborateur);
+    	
+    	for (Collaborateurs_Competences CC : collaborateur.getExperiences()) {
+    		CC.setCollaborateur(collaborateur);
+    		iCollaborateur_competenceDao.save(CC);
+    	}
     	return true;
     }
     

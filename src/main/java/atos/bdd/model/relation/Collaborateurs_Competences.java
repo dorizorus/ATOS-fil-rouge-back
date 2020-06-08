@@ -19,10 +19,12 @@ import java.io.Serializable;
 @EntityListeners(AuditingEntityListener.class)
 public class Collaborateurs_Competences implements Serializable {
 	
-	@EmbeddedId // Marque la variable qui sera la clé primaire. Chaque entité à besoin d'une clé primaire. Ici id, qui est une instanciation de cle_collab_compet
-	Cle_collab_competence id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @EmbeddedId // Marque la variable qui sera la clé primaire. Chaque entité à besoin d'une clé primaire. Ici id, qui est une instanciation de cle_collab_compet
+	Integer id;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST) // Un many to many n'existe techniquement pas dans la BDD. Ici, nous avons transformé le ManyToMany afin qu'il soit
+	@ManyToOne // Un many to many n'existe techniquement pas dans la BDD. Ici, nous avons transformé le ManyToMany afin qu'il soit
     		// possible de faire une clé composite. Ici du coup, on va faire une relation entre la table de jointure (qui est une entité)
 			// avec la table collaborateur, puis une autre avec competence.
     @MapsId("id_collaborateur") // Permet de lier ces champs comme étant une "partie" de la clé primaire.
@@ -30,7 +32,7 @@ public class Collaborateurs_Competences implements Serializable {
     @JsonView(MyJsonView.Competence.class)
     Collaborateur collaborateur;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
     @MapsId("id_competence") // Accessoirement, cela permet de les marquer en tant que clé etrangère de la relation many to one. Le many possède la fk.
     @JoinColumn(name = "id_competence")
     @JsonView(MyJsonView.Collaborateur.class)

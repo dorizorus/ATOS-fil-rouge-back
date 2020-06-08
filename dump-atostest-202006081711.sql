@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: atostest
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	5.7.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `agence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `agence` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
@@ -47,16 +47,16 @@ DROP TABLE IF EXISTS `besoin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `besoin` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_echeance` date DEFAULT NULL,
   `date_emission` date DEFAULT NULL,
   `est_ouvert` bit(1) NOT NULL,
   `est_recurrent` bit(1) NOT NULL,
   `est_satisfait` bit(1) NOT NULL,
-  `id_agence` bigint DEFAULT NULL,
-  `id_client` int DEFAULT NULL,
-  `id_contact` int DEFAULT NULL,
-  `id_site` int DEFAULT NULL,
+  `id_agence` bigint(20) DEFAULT NULL,
+  `id_client` int(11) DEFAULT NULL,
+  `id_contact` int(11) DEFAULT NULL,
+  `id_site` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKthscbc6n6s2gaen8r79n1oqnj` (`id_agence`),
   KEY `FK8u6vxlddl4x8q54mqqrmx8gc5` (`id_client`),
@@ -87,8 +87,8 @@ DROP TABLE IF EXISTS `besoins_competences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `besoins_competences` (
-  `id_competence` int NOT NULL,
-  `id_besoin` bigint NOT NULL,
+  `id_competence` int(11) NOT NULL,
+  `id_besoin` bigint(20) NOT NULL,
   `experience` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_besoin`,`id_competence`),
   KEY `FKntpytonmydc4kqib3vdei9k8i` (`id_competence`),
@@ -115,7 +115,7 @@ DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -139,16 +139,18 @@ DROP TABLE IF EXISTS `collaborateur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `collaborateur` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `bench` int NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `bench` int(11) NOT NULL,
   `cv_url` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
   `prenom` varchar(255) DEFAULT NULL,
-  `id_agence` bigint DEFAULT NULL,
+  `id_agence` bigint(20) DEFAULT NULL,
+  `titre` varchar(255) DEFAULT NULL,
+  `identifiant` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKg9l6oo9jtya88mt1nf2muyra9` (`id_agence`),
   CONSTRAINT `FKg9l6oo9jtya88mt1nf2muyra9` FOREIGN KEY (`id_agence`) REFERENCES `agence` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +159,7 @@ CREATE TABLE `collaborateur` (
 
 LOCK TABLES `collaborateur` WRITE;
 /*!40000 ALTER TABLE `collaborateur` DISABLE KEYS */;
-INSERT INTO `collaborateur` VALUES (1,31,'odio. Nam interdum enim non','Kerry','Zephania',1),(2,38,'sodales elit erat vitae risus.','Karen','Marsden',7),(3,94,'Donec non justo.','Camilla','Elvis',2),(4,4,'vulputate','Colleen','Wade',2),(5,58,'ac ipsum. Phasellus','Ulla','Simon',3),(6,76,'lobortis quam','Shaine','Derek',3),(7,64,'lobortis mauris.','Reagan','Curran',6),(8,27,'amet orci. Ut sagittis lobortis','Tanya','Holmes',4),(9,28,'condimentum.','Ayanna','Coby',10),(10,68,'risus.','Lesley','Norman',5);
+INSERT INTO `collaborateur` VALUES (1,31,'odio. Nam interdum enim non','Kerry','Zephania',1,'Developpeur Java','ABC'),(2,38,'sodales elit erat vitae risus.','Karen','Marsden',7,'Developpeur Dotnet','BDA'),(3,94,'Donec non justo.','Camilla','Elvis',2,'Architecte reseau','ZAEC'),(4,4,'vulputate','Colleen','Wade',2,'Testeur reseau','FFR11'),(5,58,'ac ipsum. Phasellus','Ulla','Simon',3,'Concepteur Merise','ABC2'),(6,76,'lobortis quam','Shaine','Derek',3,'Architecte concepteur','25FR'),(7,64,'lobortis mauris.','Reagan','Curran',6,'Analyste','FFR4'),(8,27,'amet orci. Ut sagittis lobortis','Tanya','Holmes',4,'Analyste reseau','ACB3'),(9,28,'condimentum.','Ayanna','Coby',10,'Community Manager','ET89'),(10,68,'risus.','Lesley','Norman',5,'RH','RRG4'),(15,0,'','Tardy','Julien',1,'Développeur Java','MA478'),(16,0,'','Tardy','Julien',1,'Développeur Java','MA478'),(17,0,'','Tardy','Julien',1,'Développeur Java','MA478'),(18,0,'','Tardy','Julien',1,'Développeur Java','MA478'),(19,0,'','Tardy','Julien',1,'Développeur Java','MA478');
 /*!40000 ALTER TABLE `collaborateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,10 +171,11 @@ DROP TABLE IF EXISTS `collaborateurs_competences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `collaborateurs_competences` (
-  `id_competence` int NOT NULL,
-  `id_collaborateur` bigint NOT NULL,
-  `annees_experience` int NOT NULL,
+  `id_competence` int(11) NOT NULL,
+  `id_collaborateur` bigint(20) NOT NULL,
+  `annees_experience` int(11) NOT NULL,
   `experience` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   PRIMARY KEY (`id_collaborateur`,`id_competence`),
   KEY `FKto8g01wfubmvyvdyehopoklt` (`id_competence`),
   CONSTRAINT `FKh503t5htxkdt1bpddsn6rw6pv` FOREIGN KEY (`id_collaborateur`) REFERENCES `collaborateur` (`id`),
@@ -186,7 +189,7 @@ CREATE TABLE `collaborateurs_competences` (
 
 LOCK TABLES `collaborateurs_competences` WRITE;
 /*!40000 ALTER TABLE `collaborateurs_competences` DISABLE KEYS */;
-INSERT INTO `collaborateurs_competences` VALUES (6,1,5,'Expérimenté'),(6,3,12,'Junior'),(1,4,10,'Expérimenté'),(4,4,14,'Expérimenté'),(2,6,11,'Expérimenté'),(3,7,18,'Expert'),(7,7,25,'Expert'),(4,8,15,'Expert'),(8,8,22,'Junior'),(9,8,19,'Expert');
+INSERT INTO `collaborateurs_competences` VALUES (6,1,5,'Expérimenté',0),(3,2,4,'Junior',0),(6,3,12,'Junior',0),(1,4,10,'Expérimenté',0),(4,4,14,'Expérimenté',0),(4,5,8,'Expérimenté',0),(2,6,11,'Expérimenté',0),(3,7,18,'Expert',0),(7,7,25,'Expert',0),(4,8,15,'Expert',0),(8,8,22,'Junior',0),(9,8,19,'Expert',0);
 /*!40000 ALTER TABLE `collaborateurs_competences` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,12 +201,12 @@ DROP TABLE IF EXISTS `commentaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `commentaire` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `commentaire` varchar(255) DEFAULT NULL,
   `date_emission` datetime DEFAULT NULL,
-  `id_besoin` bigint DEFAULT NULL,
-  `id_demarche` bigint DEFAULT NULL,
-  `id_proposition` bigint DEFAULT NULL,
+  `id_besoin` bigint(20) DEFAULT NULL,
+  `id_demarche` bigint(20) DEFAULT NULL,
+  `id_proposition` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKt8gybgr4ee4bi35yhxan5qn67` (`id_besoin`),
   KEY `FKne2pygg0mwovuxqu13sg4y1h8` (`id_demarche`),
@@ -232,11 +235,11 @@ DROP TABLE IF EXISTS `competence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `competence` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -245,7 +248,7 @@ CREATE TABLE `competence` (
 
 LOCK TABLES `competence` WRITE;
 /*!40000 ALTER TABLE `competence` DISABLE KEYS */;
-INSERT INTO `competence` VALUES (1,'Développeur','Metier'),(2,'Architecte','Metier'),(3,'Autre','Metier'),(4,'Java','Technologie'),(5,'DotNet','Technologie'),(6,'Merise','Méthode'),(7,'UML','Méthode'),(8,'Linux','Technologie'),(9,'Windows','Technologie'),(10,NULL,'Outil');
+INSERT INTO `competence` VALUES (1,'Développeur','Metier'),(2,'Architecte','Metier'),(3,'Autre','Metier'),(4,'Java','Technologie'),(5,'DotNet','Technologie'),(6,'Merise','Méthode'),(7,'UML','Méthode'),(8,'Linux','Technologie'),(9,'Windows','Technologie'),(10,'Eclipse','Outil'),(15,'PhpMyAdmin','Outils'),(16,'Architecte réseau','Metier');
 /*!40000 ALTER TABLE `competence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +260,7 @@ DROP TABLE IF EXISTS `contact_client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact_client` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
   `num_fax` varchar(255) DEFAULT NULL,
@@ -265,8 +268,8 @@ CREATE TABLE `contact_client` (
   `num_tel_pro` varchar(255) DEFAULT NULL,
   `position` varchar(255) DEFAULT NULL,
   `prenom` varchar(255) DEFAULT NULL,
-  `id_client` int DEFAULT NULL,
-  `id_site` int DEFAULT NULL,
+  `id_client` int(11) DEFAULT NULL,
+  `id_site` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKol164w7gkod9ipc079xm6mbg6` (`id_client`),
   KEY `FKst10g2uj6d2qwth7tdx234gbc` (`id_site`),
@@ -293,13 +296,13 @@ DROP TABLE IF EXISTS `contact_soustraitant`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact_soustraitant` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
   `num_tel_perso` varchar(255) DEFAULT NULL,
   `num_tel_pro` varchar(255) DEFAULT NULL,
   `prenom` varchar(255) DEFAULT NULL,
-  `id_agence` bigint DEFAULT NULL,
+  `id_agence` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKtlmo3g3gec9i538f90gh1edve` (`id_agence`),
   CONSTRAINT `FKtlmo3g3gec9i538f90gh1edve` FOREIGN KEY (`id_agence`) REFERENCES `agence` (`id`)
@@ -324,15 +327,18 @@ DROP TABLE IF EXISTS `demarche`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `demarche` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_demarche` datetime DEFAULT NULL,
   `date_planification` datetime DEFAULT NULL,
   `libelle` varchar(255) DEFAULT NULL,
-  `id_site_client` int DEFAULT NULL,
-  `id_user` bigint DEFAULT NULL,
+  `id_site_client` int(11) DEFAULT NULL,
+  `id_user` bigint(20) DEFAULT NULL,
+  `id_utilisateur` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKo68eu1k468h2i1m85db1jo682` (`id_site_client`),
   KEY `FKmbubar3lc1x31rny7rbl8tf90` (`id_user`),
+  KEY `FKkvd2m300vi6rbp2h62lllyufl` (`id_utilisateur`),
+  CONSTRAINT `FKkvd2m300vi6rbp2h62lllyufl` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id`),
   CONSTRAINT `FKmbubar3lc1x31rny7rbl8tf90` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`),
   CONSTRAINT `FKo68eu1k468h2i1m85db1jo682` FOREIGN KEY (`id_site_client`) REFERENCES `site_client` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -344,7 +350,7 @@ CREATE TABLE `demarche` (
 
 LOCK TABLES `demarche` WRITE;
 /*!40000 ALTER TABLE `demarche` DISABLE KEYS */;
-INSERT INTO `demarche` VALUES (1,'2019-11-09 00:00:00','2019-11-22 00:00:00','at risus. Nunc ac sem',6,2),(2,'2021-01-25 00:00:00','2021-01-08 00:00:00','purus gravida sagittis.',9,1),(3,'2020-09-19 00:00:00','2019-07-12 00:00:00','Nulla interdum. Curabitur',7,1),(4,'2020-01-30 00:00:00','2019-10-22 00:00:00','arcu. Vestibulum ante',1,3),(5,'2021-05-06 00:00:00','2020-12-12 00:00:00','mollis',1,4),(6,'2020-06-02 00:00:00','2020-10-24 00:00:00','Cum sociis natoque',1,1),(7,'2021-04-18 00:00:00','2020-12-02 00:00:00','Nulla aliquet. Proin velit.',6,1),(8,'2020-08-10 00:00:00','2020-01-11 00:00:00','Proin dolor. Nulla semper',1,4),(9,'2021-01-05 00:00:00','2020-03-18 00:00:00','euismod enim.',3,4),(10,'2020-10-11 00:00:00','2020-06-26 00:00:00','cursus a, enim. Suspendisse',5,3);
+INSERT INTO `demarche` VALUES (1,'2019-11-09 00:00:00','2019-11-22 00:00:00','at risus. Nunc ac sem',6,2,NULL),(2,'2021-01-25 00:00:00','2021-01-08 00:00:00','purus gravida sagittis.',9,1,NULL),(3,'2020-09-19 00:00:00','2019-07-12 00:00:00','Nulla interdum. Curabitur',7,1,NULL),(4,'2020-01-30 00:00:00','2019-10-22 00:00:00','arcu. Vestibulum ante',1,3,NULL),(5,'2021-05-06 00:00:00','2020-12-12 00:00:00','mollis',1,4,NULL),(6,'2020-06-02 00:00:00','2020-10-24 00:00:00','Cum sociis natoque',1,1,NULL),(7,'2021-04-18 00:00:00','2020-12-02 00:00:00','Nulla aliquet. Proin velit.',6,1,NULL),(8,'2020-08-10 00:00:00','2020-01-11 00:00:00','Proin dolor. Nulla semper',1,4,NULL),(9,'2021-01-05 00:00:00','2020-03-18 00:00:00','euismod enim.',3,4,NULL),(10,'2020-10-11 00:00:00','2020-06-26 00:00:00','cursus a, enim. Suspendisse',5,3,NULL);
 /*!40000 ALTER TABLE `demarche` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,23 +362,26 @@ DROP TABLE IF EXISTS `proposition`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `proposition` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date_proposition` datetime DEFAULT NULL,
   `date_relance` datetime DEFAULT NULL,
-  `prix_achat` bigint NOT NULL,
-  `prix_vente` bigint NOT NULL,
-  `id_besoin` bigint DEFAULT NULL,
-  `id_collaborateur` bigint DEFAULT NULL,
-  `id_statut` int DEFAULT NULL,
-  `id_user` bigint DEFAULT NULL,
+  `prix_achat` bigint(20) NOT NULL,
+  `prix_vente` bigint(20) NOT NULL,
+  `id_besoin` bigint(20) DEFAULT NULL,
+  `id_collaborateur` bigint(20) DEFAULT NULL,
+  `id_statut` int(11) DEFAULT NULL,
+  `id_user` bigint(20) DEFAULT NULL,
+  `id_utilisateur` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKi6djkbgchmbagn7vtjwuieg9f` (`id_besoin`),
   KEY `FK6sttdaq0f1k8tqua4erft4vdd` (`id_collaborateur`),
   KEY `FK8k73m0rqfufrnntw5npw8kl8b` (`id_statut`),
   KEY `FK9d9kv3jux6eh3on04cf9yagrb` (`id_user`),
+  KEY `FKbisp96pdv34alrq9jfwxe1rmc` (`id_utilisateur`),
   CONSTRAINT `FK6sttdaq0f1k8tqua4erft4vdd` FOREIGN KEY (`id_collaborateur`) REFERENCES `collaborateur` (`id`),
   CONSTRAINT `FK8k73m0rqfufrnntw5npw8kl8b` FOREIGN KEY (`id_statut`) REFERENCES `statut` (`id`),
   CONSTRAINT `FK9d9kv3jux6eh3on04cf9yagrb` FOREIGN KEY (`id_user`) REFERENCES `utilisateur` (`id`),
+  CONSTRAINT `FKbisp96pdv34alrq9jfwxe1rmc` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id`),
   CONSTRAINT `FKi6djkbgchmbagn7vtjwuieg9f` FOREIGN KEY (`id_besoin`) REFERENCES `besoin` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -383,7 +392,7 @@ CREATE TABLE `proposition` (
 
 LOCK TABLES `proposition` WRITE;
 /*!40000 ALTER TABLE `proposition` DISABLE KEYS */;
-INSERT INTO `proposition` VALUES (1,'2021-05-11 00:00:00','2019-11-03 00:00:00',113,201,5,1,1,4),(2,'2019-11-13 00:00:00','2020-10-31 00:00:00',59,236,9,4,2,3),(3,'2020-04-19 00:00:00','2020-05-18 00:00:00',57,164,4,5,2,3),(4,'2020-10-29 00:00:00','2020-11-10 00:00:00',165,159,6,6,4,1),(5,'2020-08-02 00:00:00','2020-04-21 00:00:00',23,197,10,8,4,2),(6,'2020-10-04 00:00:00','2020-11-12 00:00:00',80,123,9,9,1,2),(7,'2019-06-17 00:00:00','2020-01-01 00:00:00',45,158,9,1,4,4),(8,'2019-12-05 00:00:00','2019-11-02 00:00:00',186,61,8,9,4,2),(9,'2020-05-31 00:00:00','2019-05-23 00:00:00',7,65,6,7,1,1),(10,'2020-12-30 00:00:00','2019-11-01 00:00:00',170,150,10,10,3,4);
+INSERT INTO `proposition` VALUES (1,'2021-05-11 00:00:00','2019-11-03 00:00:00',113,201,5,1,1,4,NULL),(2,'2019-11-13 00:00:00','2020-10-31 00:00:00',59,236,9,4,2,3,NULL),(3,'2020-04-19 00:00:00','2020-05-18 00:00:00',57,164,4,5,2,3,NULL),(4,'2020-10-29 00:00:00','2020-11-10 00:00:00',165,159,6,6,4,1,NULL),(5,'2020-08-02 00:00:00','2020-04-21 00:00:00',23,197,10,8,4,2,NULL),(6,'2020-10-04 00:00:00','2020-11-12 00:00:00',80,123,9,9,1,2,NULL),(7,'2019-06-17 00:00:00','2020-01-01 00:00:00',45,158,9,1,4,4,NULL),(8,'2019-12-05 00:00:00','2019-11-02 00:00:00',186,61,8,9,4,2,NULL),(9,'2020-05-31 00:00:00','2019-05-23 00:00:00',7,65,6,7,1,1,NULL),(10,'2020-12-30 00:00:00','2019-11-01 00:00:00',170,150,10,10,3,4,NULL);
 /*!40000 ALTER TABLE `proposition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,7 +404,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -419,11 +428,12 @@ DROP TABLE IF EXISTS `site_client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `site_client` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `adresse` varchar(255) DEFAULT NULL,
   `est_actif` bit(1) NOT NULL,
   `nom` varchar(255) DEFAULT NULL,
-  `id_client` int DEFAULT NULL,
+  `id_client` int(11) DEFAULT NULL,
+  `nom_ville` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKg9hiknuvjvjp8008vsagrr7rg` (`id_client`),
   CONSTRAINT `FKg9hiknuvjvjp8008vsagrr7rg` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`)
@@ -436,7 +446,7 @@ CREATE TABLE `site_client` (
 
 LOCK TABLES `site_client` WRITE;
 /*!40000 ALTER TABLE `site_client` DISABLE KEYS */;
-INSERT INTO `site_client` VALUES (1,'9739 Pellentesque St.','','Borlänge',3),(2,'336-1519 Facilisis. St.','\0','Dawson Creek',2),(3,'4895 Etiam Avenue','','Travo',10),(4,'601-8396 Lacinia Rd.','\0','Qutubullapur',3),(5,'Ap #298-3322 Magna. St.','','Dolgellau',7),(6,'Ap #804-815 Nullam Avenue','','Scorrano',6),(7,'7004 Sed Rd.','\0','Traiskirchen',1),(8,'P.O. Box 397, 541 Tempor Road','\0','Montefalcone nel Sannio',4),(9,'3416 Dui. Rd.','','Grimbergen',1),(10,'P.O. Box 418, 6686 Fringilla Ave','\0','Lourdes',4);
+INSERT INTO `site_client` VALUES (1,'9739 Pellentesque St.','','Borlänge',3,NULL),(2,'336-1519 Facilisis. St.','\0','Dawson Creek',2,NULL),(3,'4895 Etiam Avenue','','Travo',10,NULL),(4,'601-8396 Lacinia Rd.','\0','Qutubullapur',3,NULL),(5,'Ap #298-3322 Magna. St.','','Dolgellau',7,NULL),(6,'Ap #804-815 Nullam Avenue','','Scorrano',6,NULL),(7,'7004 Sed Rd.','\0','Traiskirchen',1,NULL),(8,'P.O. Box 397, 541 Tempor Road','\0','Montefalcone nel Sannio',4,NULL),(9,'3416 Dui. Rd.','','Grimbergen',1,NULL),(10,'P.O. Box 418, 6686 Fringilla Ave','\0','Lourdes',4,NULL);
 /*!40000 ALTER TABLE `site_client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -448,7 +458,7 @@ DROP TABLE IF EXISTS `statut`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `statut` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -472,13 +482,13 @@ DROP TABLE IF EXISTS `utilisateur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `utilisateur` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `est_actif` bit(1) NOT NULL,
   `login` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `prenom` varchar(255) DEFAULT NULL,
-  `id_role` int DEFAULT NULL,
+  `id_role` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKr6x7g9mw0va8oe9drohepvywu` (`id_role`),
   CONSTRAINT `FKr6x7g9mw0va8oe9drohepvywu` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`)
@@ -508,4 +518,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-17 13:05:16
+-- Dump completed on 2020-06-08 17:11:32
