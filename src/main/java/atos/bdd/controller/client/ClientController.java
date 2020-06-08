@@ -2,7 +2,6 @@ package atos.bdd.controller.client;
 
 import atos.bdd.dao.client.IClientDao;
 import atos.bdd.model.client.Client;
-import atos.bdd.model.client.ContactClient;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +22,14 @@ public class ClientController {
     //récupérer tous les clients
     @GetMapping("/clients")
     @JsonView(MyJsonView.Client.class)
-    public List<Client> getClients(){
+    public List<Client> getClients() {
         return iClientDao.findAll();
     }
 
     //récupérer un client spécifique par son id
     @GetMapping("/clients/{id}")
     @JsonView(MyJsonView.Client.class)
-    public Client getClient(@PathVariable int id){
+    public Client getClient(@PathVariable int id) {
         return iClientDao.findById(id).orElse(null);
     }
 
@@ -38,12 +37,12 @@ public class ClientController {
     @PutMapping("/addclient")
     public String saveClient(@RequestBody Client client) {
         iClientDao.save(client);
-        return "client ajouté avec id= "+client.getId();
+        return "client ajouté avec id= " + client.getId();
     }
 
     //modification d'un client
     @PutMapping("/updateclient")
-    public String updateClient(@RequestBody Client client){
+    public String updateClient(@RequestBody Client client) {
         if (client!=null){
             iClientDao.save(client);
             return "Client modifié";
@@ -54,22 +53,12 @@ public class ClientController {
 
     //suppression d'un client
     @DeleteMapping("/deleteclient")
-    public String deleteClient(@RequestBody Client client){
-        if (client!=null){
+    public String deleteClient(@RequestBody Client client) {
+        if (client!=null) {
             iClientDao.delete(client);
             return "Client supprimé";
-        }else{
+        } else {
             return "Client non trouvé";
         }
     }
-
-
-
-
-
-
-
-
-
-
 }
