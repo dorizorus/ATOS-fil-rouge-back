@@ -1,4 +1,4 @@
-package atos.bdd.controller.client;
+package atos.bdd.controller;
 
 import atos.bdd.dao.client.IClientDao;
 import atos.bdd.model.client.Client;

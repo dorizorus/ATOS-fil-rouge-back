@@ -1,6 +1,5 @@
 package atos.bdd.model;
 
-import atos.bdd.model.Agence;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

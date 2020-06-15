@@ -1,16 +1,11 @@
 package atos.bdd.controller;
 
-<<<<<<< Updated upstream:src/main/java/atos/bdd/controller/collaborateur/CollaborateurController.java
-import atos.bdd.dao.collaborateur.ICollaborateurDao;
-import atos.bdd.model.collaborateur.Collaborateur;
-import atos.bdd.model.competence.Competence;
-=======
 import atos.bdd.dao.ICollaborateurDao;
 import atos.bdd.dao.IExperienceDao;
 import atos.bdd.model.Collaborateur;
 import atos.bdd.model.relation.Cle_collab_competence;
 import atos.bdd.model.relation.Collaborateurs_Competences;
->>>>>>> Stashed changes:src/main/java/atos/bdd/controller/CollaborateurController.java
+
 import atos.bdd.view.MyJsonView;
 
 import java.util.List;
@@ -30,10 +25,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class CollaborateurController {
 
     ICollaborateurDao iCollaborateurDao;
+    IExperienceDao iExperienceDao;
 
     @Autowired
-    public CollaborateurController(ICollaborateurDao iCollaborateurDao) {
+    public CollaborateurController(ICollaborateurDao iCollaborateurDao, IExperienceDao iExperienceDao) {
         this.iCollaborateurDao = iCollaborateurDao;
+        this.iExperienceDao = iExperienceDao;
     }
 
     @JsonView(MyJsonView.Collaborateur.class)
@@ -46,9 +43,9 @@ public class CollaborateurController {
     @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
     public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
-<<<<<<< Updated upstream:src/main/java/atos/bdd/controller/collaborateur/CollaborateurController.java
+
     	iCollaborateurDao.save(collaborateur);
-=======
+
     	iCollaborateurDao.saveAndFlush(collaborateur); //flush car récup id du collab
         for (Collaborateurs_Competences experience: collaborateur.getExperiences())
         {
@@ -70,7 +67,7 @@ public class CollaborateurController {
 //                    iExperienceDao.save(experience);
 //                }
 //        );
->>>>>>> Stashed changes:src/main/java/atos/bdd/controller/CollaborateurController.java
+
     	return true;
     }
     

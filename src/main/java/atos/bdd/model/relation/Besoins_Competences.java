@@ -1,7 +1,8 @@
 package atos.bdd.model.relation;
 
-import atos.bdd.model.besoin.Besoin;
-import atos.bdd.model.competence.Competence;
+
+import atos.bdd.model.Besoin;
+import atos.bdd.model.Competence;
 import atos.bdd.model.relation.enums.Experience;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
