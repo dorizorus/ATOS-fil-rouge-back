@@ -45,7 +45,7 @@ public class Collaborateur {
     @OneToMany(mappedBy = "collaborateur")
     private Set<Proposition> propositions;
 
-    @ManyToOne(cascade = CascadeType.PERSIST) 
+    @ManyToOne
     @JsonView(MyJsonView.Collaborateur.class) // Fait apparaitre l'agence lors d'un appel de la vue collaborateur
     @JoinColumn(name = "id_agence")
     private Agence agence;
