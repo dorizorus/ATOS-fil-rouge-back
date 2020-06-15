@@ -1,4 +1,4 @@
-package atos.bdd.model.client;
+package atos.bdd.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

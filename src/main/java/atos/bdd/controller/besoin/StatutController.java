@@ -1,6 +1,6 @@
-package atos.bdd.controller.besoin;
+package atos.bdd.controller;
 
-import atos.bdd.dao.besoin.IStatutDao;
+import atos.bdd.dao.IStatutDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

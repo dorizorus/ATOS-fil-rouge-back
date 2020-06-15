@@ -1,7 +1,7 @@
-package atos.bdd.controller.competence;
+package atos.bdd.controller;
 
-import atos.bdd.dao.competence.ICompetenceDao;
-import atos.bdd.model.competence.Competence;
+import atos.bdd.dao.ICompetenceDao;
+import atos.bdd.model.Competence;
 import atos.bdd.view.MyJsonView;
 
 import java.util.List;

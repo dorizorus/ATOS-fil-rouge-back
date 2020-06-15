@@ -1,11 +1,18 @@
-package atos.bdd.model.besoin;
+package atos.bdd.model;
 
+<<<<<<< Updated upstream
 import atos.bdd.model.agence.Agence;
 import atos.bdd.model.client.Client;
 import atos.bdd.model.client.ContactClient;
 import atos.bdd.model.client.SiteClient;
 import atos.bdd.model.competence.Competence;
+<<<<<<< Updated upstream:src/main/java/atos/bdd/model/besoin/Besoin.java
 import atos.bdd.model.relation.Besoins_Competences;
+=======
+=======
+import atos.bdd.model.relation.Besoins_Competences;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes:src/main/java/atos/bdd/model/Besoin.java
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;

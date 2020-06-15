@@ -1,6 +1,6 @@
-package atos.bdd.dao.client;
+package atos.bdd.dao;
 
-import atos.bdd.model.client.ContactClient;
+import atos.bdd.model.ContactClient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

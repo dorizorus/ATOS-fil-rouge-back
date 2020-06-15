@@ -1,7 +1,5 @@
-package atos.bdd.model.besoin;
+package atos.bdd.model;
 
-import atos.bdd.model.collaborateur.Collaborateur;
-import atos.bdd.model.utilisateur.Utilisateur;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package atos.bdd.dao.besoin;
+package atos.bdd.dao;
 
-import atos.bdd.model.besoin.Statut;
+import atos.bdd.model.Statut;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

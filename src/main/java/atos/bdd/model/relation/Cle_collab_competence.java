@@ -1,5 +1,8 @@
 package atos.bdd.model.relation;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -7,7 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 
-
+@Getter
+@Setter
 @Embeddable // Marque la classe comme étant "intégrable". Le but de cette classe est de créer une clé primaire à partir des id marqué par @EmbeddedId 
 // puis les joindre en une seule clé. 
 public class Cle_collab_competence implements Serializable {
@@ -32,24 +36,7 @@ public class Cle_collab_competence implements Serializable {
 		this.idCollaborateur = idCollaborateur;
 		this.idCompetence = idCompetence;
 	}
-	
-	
 
-	public long getIdCollaborateur() {
-		return idCollaborateur;
-	}
-
-	public void setIdCollaborateur(long idCollaborateur) {
-		this.idCollaborateur = idCollaborateur;
-	}
-
-	public int getIdCompetence() {
-		return idCompetence;
-	}
-
-	public void setIdCompetence(int idCompetence) {
-		this.idCompetence = idCompetence;
-	}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -1,15 +1,10 @@
-package atos.bdd.model.agence;
+package atos.bdd.model;
 
-import atos.bdd.model.besoin.Besoin;
-import atos.bdd.model.collaborateur.Collaborateur;
-import atos.bdd.model.soustraitant.ContactSoustraitant;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.util.Set;

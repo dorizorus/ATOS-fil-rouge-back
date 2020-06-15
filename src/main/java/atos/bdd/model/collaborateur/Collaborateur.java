@@ -1,8 +1,7 @@
-package atos.bdd.model.collaborateur;
+package atos.bdd.model;
 
-import atos.bdd.model.agence.Agence;
-import atos.bdd.model.besoin.Proposition;
-import atos.bdd.model.collaborateur.Collaborateur;
+import atos.bdd.model.Agence;
+import atos.bdd.model.Proposition;
 import atos.bdd.model.relation.Collaborateurs_Competences;
 import atos.bdd.view.MyJsonView;
 import lombok.Getter;

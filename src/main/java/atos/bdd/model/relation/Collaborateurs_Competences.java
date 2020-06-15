@@ -1,7 +1,7 @@
 package atos.bdd.model.relation;
 
-import atos.bdd.model.collaborateur.Collaborateur;
-import atos.bdd.model.competence.Competence;
+import atos.bdd.model.Collaborateur;
+import atos.bdd.model.Competence;
 import atos.bdd.model.relation.enums.Experience;
 import atos.bdd.view.MyJsonView;
 import lombok.Getter;
@@ -43,6 +43,5 @@ public class Collaborateurs_Competences implements Serializable {
     
     @JsonView(MyJsonView.Collaborateur.class)
     private int anneesExperience;
-    
-    
+
 }

@@ -1,12 +1,11 @@
-package atos.bdd.dao.besoin;
+package atos.bdd.dao;
 
-import atos.bdd.model.besoin.Besoin;
+import atos.bdd.model.Besoin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository

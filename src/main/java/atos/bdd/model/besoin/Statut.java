@@ -1,4 +1,4 @@
-package atos.bdd.model.besoin;
+package atos.bdd.model;
 
 
 import atos.bdd.view.MyJsonView;

@@ -1,6 +1,6 @@
-package atos.bdd.dao.collaborateur;
+package atos.bdd.dao;
 
-import atos.bdd.model.collaborateur.Collaborateur;
+import atos.bdd.model.Collaborateur;
 
 import java.util.List;
 

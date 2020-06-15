@@ -1,8 +1,16 @@
-package atos.bdd.controller.collaborateur;
+package atos.bdd.controller;
 
+<<<<<<< Updated upstream:src/main/java/atos/bdd/controller/collaborateur/CollaborateurController.java
 import atos.bdd.dao.collaborateur.ICollaborateurDao;
 import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.competence.Competence;
+=======
+import atos.bdd.dao.ICollaborateurDao;
+import atos.bdd.dao.IExperienceDao;
+import atos.bdd.model.Collaborateur;
+import atos.bdd.model.relation.Cle_collab_competence;
+import atos.bdd.model.relation.Collaborateurs_Competences;
+>>>>>>> Stashed changes:src/main/java/atos/bdd/controller/CollaborateurController.java
 import atos.bdd.view.MyJsonView;
 
 import java.util.List;
@@ -38,7 +46,31 @@ public class CollaborateurController {
     @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
     public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
+<<<<<<< Updated upstream:src/main/java/atos/bdd/controller/collaborateur/CollaborateurController.java
     	iCollaborateurDao.save(collaborateur);
+=======
+    	iCollaborateurDao.saveAndFlush(collaborateur); //flush car récup id du collab
+        for (Collaborateurs_Competences experience: collaborateur.getExperiences())
+        {
+            Cle_collab_competence cle = new Cle_collab_competence();
+            cle.setIdCollaborateur(collaborateur.getId());
+            cle.setIdCompetence(experience.getCompetence().getId());
+            experience.setId(cle);
+            experience.setCollaborateur(collaborateur);
+            iExperienceDao.save(experience);
+        }
+
+//        collaborateur.getExperiences().forEach(
+//                (experience) -> {
+//                    Cle_collab_competence cle = new Cle_collab_competence();
+//                    cle.setIdCollaborateur(collaborateur.getId());
+//                    cle.setIdCompetence(experience.getCompetence().getId());
+//                    experience.setId(cle);
+//                    experience.setCollaborateur(collaborateur);
+//                    iExperienceDao.save(experience);
+//                }
+//        );
+>>>>>>> Stashed changes:src/main/java/atos/bdd/controller/CollaborateurController.java
     	return true;
     }
     

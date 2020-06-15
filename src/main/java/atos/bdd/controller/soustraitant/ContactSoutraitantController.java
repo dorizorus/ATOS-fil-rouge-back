@@ -1,6 +1,6 @@
-package atos.bdd.controller.soustraitant;
+package atos.bdd.controller;
 
-import atos.bdd.dao.soustraitant.IContactSoustraitantDao;
+import atos.bdd.dao.IContactSoustraitantDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -1,6 +1,6 @@
-package atos.bdd.dao.competence;
+package atos.bdd.dao;
 
-import atos.bdd.model.competence.Competence;
+import atos.bdd.model.Competence;
 
 import java.util.List;
 

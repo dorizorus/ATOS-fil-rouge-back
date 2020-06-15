@@ -1,7 +1,7 @@
-package atos.bdd.controller.besoin;
+package atos.bdd.controller;
 
-import atos.bdd.dao.besoin.IBesoinDao;
-import atos.bdd.model.besoin.Besoin;
+import atos.bdd.dao.IBesoinDao;
+import atos.bdd.model.Besoin;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;

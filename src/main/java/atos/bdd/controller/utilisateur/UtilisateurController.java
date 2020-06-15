@@ -1,7 +1,7 @@
-package atos.bdd.controller.utilisateur;
+package atos.bdd.controller;
 
-import atos.bdd.dao.utilisateur.IUtilisateurDao;
-import atos.bdd.model.utilisateur.Utilisateur;
+import atos.bdd.dao.IUtilisateurDao;
+import atos.bdd.model.Utilisateur;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;

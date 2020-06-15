@@ -1,6 +1,6 @@
-package atos.bdd.dao.soustraitant;
+package atos.bdd.dao;
 
-import atos.bdd.model.soustraitant.ContactSoustraitant;
+import atos.bdd.model.ContactSoustraitant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

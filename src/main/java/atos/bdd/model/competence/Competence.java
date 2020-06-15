@@ -1,9 +1,13 @@
-package atos.bdd.model.competence;
+package atos.bdd.model;
 
+<<<<<<< Updated upstream
 import atos.bdd.model.besoin.Besoin;
 import atos.bdd.model.collaborateur.Collaborateur;
 import atos.bdd.model.relation.Besoins_Competences;
 import atos.bdd.model.relation.Cle_collab_competence;
+=======
+import atos.bdd.model.relation.Besoins_Competences;
+>>>>>>> Stashed changes
 import atos.bdd.model.relation.Collaborateurs_Competences;
 import atos.bdd.view.MyJsonView;
 import lombok.Getter;
@@ -15,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.*;
 import java.util.Set;
 
-
+@Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Competence {

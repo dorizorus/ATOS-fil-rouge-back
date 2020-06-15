@@ -1,8 +1,7 @@
-package atos.bdd.controller.client;
+package atos.bdd.controller;
 
-import atos.bdd.dao.client.ISiteClientDao;
-import atos.bdd.model.client.Client;
-import atos.bdd.model.client.SiteClient;
+import atos.bdd.dao.ISiteClientDao;
+import atos.bdd.model.SiteClient;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
