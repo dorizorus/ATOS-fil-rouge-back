@@ -5,6 +5,7 @@ import atos.bdd.model.Client;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,13 +54,17 @@ public class ClientController {
     }
 
     //suppression d'un client
-    @DeleteMapping("/deleteclient")
-    public String deleteClient(@RequestBody Client client) {
-        if (client!=null) {
-            iClientDao.delete(client);
-            return "Client supprimé";
-        } else {
-            return "Client non trouvé";
+    @DeleteMapping("/deleteclient/{id}")
+    public ResponseEntity  deleteClient(@PathVariable int id) {
+        Client client = iClientDao.findById(id).orElse(null);
+
+        if(client == null){
+            return ResponseEntity.noContent().build();
         }
+
+        iClientDao.deleteById(id);
+
+        return ResponseEntity.ok().build();
+
     }
 }

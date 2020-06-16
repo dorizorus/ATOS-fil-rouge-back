@@ -1,10 +1,12 @@
 package atos.bdd.controller;
 
 import atos.bdd.dao.IDemarcheDao;
+import atos.bdd.model.Client;
 import atos.bdd.model.Demarche;
 import atos.bdd.view.MyJsonView;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,13 +55,16 @@ public class DemarcheController {
     }
 
     //suppression d'une démarche
-    @DeleteMapping("/deletedemarche")
-    public String deleteDemarche(@RequestBody Demarche demarche){
-        if (demarche!=null){
-            iDemarcheDao.delete(demarche);
-            return "Démarche supprimée";
-        }else{
-            return "Démarche non trouvée";
+    @DeleteMapping("/deletedemarche/{id}")
+    public ResponseEntity deleteDemarche(@PathVariable int id){
+        Demarche demarche = iDemarcheDao.findById(id).orElse(null);
+
+        if(demarche == null){
+            return ResponseEntity.noContent().build();
         }
+
+        iDemarcheDao.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
 }
