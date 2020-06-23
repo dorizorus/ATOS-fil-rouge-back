@@ -17,28 +17,28 @@ public class ContactClient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private int id;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String nom;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String prenom;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class,MyJsonView.Client.class})
     private String position;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String email;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String numTelPerso;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String numTelPro;
 
-    @JsonView(MyJsonView.ContactClient.class)
+    @JsonView({MyJsonView.ContactClient.class, MyJsonView.Client.class})
     private String numFax;
 
     @ManyToOne

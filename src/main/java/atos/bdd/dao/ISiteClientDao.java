@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ISiteClientDao extends JpaRepository<SiteClient, Integer> {
+
+    SiteClient findByAdresse(String adresse);
 }

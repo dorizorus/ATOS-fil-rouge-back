@@ -32,6 +32,7 @@ public class SiteClient {
     })
     private String nomVille;
 
+    @JsonView(MyJsonView.Client.class)
     private String adresse;
 
     @JsonView(MyJsonView.SiteClient.class)
@@ -41,7 +42,7 @@ public class SiteClient {
     @JoinColumn(name = "id_client")
     private Client client;
 
+    @JsonView(MyJsonView.Client.class)
     @OneToMany(mappedBy = "siteClient")
-    @JsonIgnore
     private Set<ContactClient> contactsClient;
 }

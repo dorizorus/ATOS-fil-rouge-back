@@ -40,6 +40,8 @@ public class Utilisateur {
 
     @JsonView(MyJsonView.Utilisateur.class)
     private String login;
+
+    @JsonView(MyJsonView.Utilisateur.class)
     private String password;
 
     @JsonView(MyJsonView.Utilisateur.class)
@@ -51,6 +53,5 @@ public class Utilisateur {
     private Role role;
 
     @OneToMany(mappedBy = "utilisateur")
-    @JsonView(MyJsonView.Utilisateur.class)
     private Set<Proposition> propositions;
 }

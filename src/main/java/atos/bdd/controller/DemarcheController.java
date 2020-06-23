@@ -37,14 +37,14 @@ public class DemarcheController {
     }
 
     //ajouter une nouvelle démarche
-    @PutMapping("/adddemarche")
+    @PostMapping("/adddemarche")
     public String saveDemarche(@RequestBody Demarche demarche) {
         iDemarcheDao.save(demarche);
         return "Démarche ajoutée avec id= " + demarche.getId();
     }
 
     //modification d'une démarche
-    @PutMapping("/updatedemarche")
+    @PostMapping("/updatedemarche")
     public String updateDemarche(@RequestBody Demarche demarche){
         if (demarche!=null){
             iDemarcheDao.save(demarche);

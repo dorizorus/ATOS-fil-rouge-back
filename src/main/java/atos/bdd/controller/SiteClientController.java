@@ -36,14 +36,14 @@ public class SiteClientController {
     }
 
     //ajouter un nouveau site client
-    @PutMapping("/addsiteclient")
+    @PostMapping("/addsiteclient")
     public String saveSiteClient(@RequestBody SiteClient siteClient) {
         iSiteClientDao.save(siteClient);
         return "site client ajouté avec id= " + siteClient.getId();
     }
 
     //modification d'un site client
-    @PutMapping("/updatesiteclient")
+    @PostMapping("/updatesiteclient")
     public String updateSiteClient(@RequestBody SiteClient siteClient){
         if (siteClient!=null){
             iSiteClientDao.save(siteClient);

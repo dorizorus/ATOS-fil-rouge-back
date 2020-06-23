@@ -19,23 +19,18 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({
-            MyJsonView.Client.class,
-            MyJsonView.Besoin.class
-    })
+    @JsonView({MyJsonView.Client.class, MyJsonView.Besoin.class})
     private int id;
 
-    @JsonView({
-            MyJsonView.Client.class,
-            MyJsonView.Besoin.class
-    })
+    @JsonView({MyJsonView.Client.class, MyJsonView.Besoin.class})
     private String nom;
 
-    @JsonIgnore
+
+    @JsonView({MyJsonView.Client.class})
     @OneToMany(mappedBy = "client")
     private Set<SiteClient> sites;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "client")
     private Set<ContactClient> contacts;
 }

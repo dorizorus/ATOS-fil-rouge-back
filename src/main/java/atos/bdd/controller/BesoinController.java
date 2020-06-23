@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 public class BesoinController {
 
@@ -73,7 +73,7 @@ public class BesoinController {
      * @return Un String qui confirme ou infirme la réussite de l'enregistrement (pour l'instant)
      */
 
-    @PutMapping("/besoin/ajout/enregistrer")
+    @PostMapping("/besoin/ajout/enregistrer")
     public String saveBesoin(@RequestBody Besoin besoin) {
         try {
             iBesoinDao.save(besoin);
@@ -100,7 +100,7 @@ public class BesoinController {
      * @return Un String qui confirme ou infirme la réussite de l'enregistrement (pour l'instant)
      */
 
-    @PutMapping("/besoin/modifier/{id}/enregistrer")
+    @PostMapping("/besoin/modifier/{id}/enregistrer")
     public String saveEditedBesoin(@PathVariable long id, @RequestBody Besoin besoin) {
         try {
             iBesoinDao.save(besoin);

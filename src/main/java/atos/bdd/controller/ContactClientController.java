@@ -35,14 +35,14 @@ public class ContactClientController {
     }
 
     //ajouter un nouveau contact client
-    @PutMapping("/addcontactclient")
+    @PostMapping("/addcontactclient")
     public String saveContactClient(@RequestBody ContactClient contactClient) {
         iContactClientDao.save(contactClient);
         return "contact client ajouté avec id= " + contactClient.getId();
     }
 
     //modification d'un contact client
-    @PutMapping("/updatecontactclient")
+    @PostMapping("/updatecontactclient")
     public String updateContactClient(@RequestBody ContactClient contactClient){
         if (contactClient!=null){
             iContactClientDao.save(contactClient);

@@ -70,6 +70,10 @@ public class Besoin {
     @JsonView(MyJsonView.Besoin.class)
     private Set<Proposition> propositions;
 
+
+    @JsonView(MyJsonView.Besoin.class)
+    private String titre;
+
     @ManyToOne
     @JoinColumn(name = "id_agence")
     @JsonView(MyJsonView.Besoin.class)

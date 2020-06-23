@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class PropositionController {
 
@@ -58,7 +59,7 @@ public class PropositionController {
      * Méthode qui energistre (update) une proposition modifiée dans la BDD.
      * @return Un String qui confirme ou infirme la réussite de l'enregistrement (pour l'instant)
      */
-    @PutMapping("/proposition/modifier/{id}/enregistrer")
+    @PostMapping("/proposition/modifier/{id}/enregistrer")
     @JsonView(MyJsonView.Proposition.class)
     public String saveEditedProposition(@PathVariable long id, @RequestBody Proposition proposition) {
         try {
@@ -74,7 +75,7 @@ public class PropositionController {
      * Méthode qui energistre une nouvelle proposition dans la BDD.
      * @return Un String qui confirme ou infirme la réussite de l'enregistrement (pour l'instant)
      */
-    @PutMapping("/proposition/ajouter/enregistrer")
+    @PostMapping("/proposition/ajouter/enregistrer")
     @JsonView(MyJsonView.Proposition.class)
     public String saveNewProposition(@RequestBody Proposition proposition) {
         try {

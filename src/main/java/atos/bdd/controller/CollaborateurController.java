@@ -11,16 +11,11 @@ import atos.bdd.view.MyJsonView;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-
+@CrossOrigin
 @RestController
 public class CollaborateurController {
 
@@ -40,7 +35,7 @@ public class CollaborateurController {
     	return iCollaborateurDao.findById(id);
     }
     
-    @PutMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
+    @PostMapping("/collaborateur/ajoutercollaborateur") // Ajoute une compétence. Ne vérifie pas l'objet donc ne renvoie que du true.
     public boolean ajouterCollaborateur(@RequestBody Collaborateur collaborateur)
     {
 
